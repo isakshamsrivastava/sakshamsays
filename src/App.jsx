@@ -5,28 +5,28 @@ const posts = [
   {
     title: "Pahalgam Incident: A Tragic Day in India",
     date: "2025-04-23",
-    image: "https://source.unsplash.com/600x400/?kashmir,mountains",
+    image: "https://scontent.flko7-2.fna.fbcdn.net/v/t51.75761-15/491422623_18378826930137674_4476213096592553391_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=127cfc&_nc_ohc=4iw2DyB2hXUQ7kNvwECd2Va&_nc_oc=Adkwjqb4alk70ouYO3x2JHRfZ5JAOa1J2A3VnYV01aKzGp1mvNVmieyKGV2GcAwy3pgD7Q4k5CoEF71qb431TsQJ&_nc_zt=23&_nc_ht=scontent.flko7-2.fna&_nc_gid=S9QZaUq7Ux2uGKO5aB-EKw&oh=00_AfF_132d8tl51uWm1D2lR4hWP5USKTzlxrrB3Kc_4MgkQw&oe=680EBA1E",
     summary: "A tragic incident unfolded today in Pahalgam, India. The situation remains tense as authorities investigate.",
     slug: "pahalgam-incident"
   },
   {
     title: "How I Built This Blog on GitHub Pages",
     date: "2025-04-22",
-    image: "https://source.unsplash.com/600x400/?coding,developer",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXvBHmvruOOGTmPmHiQZA19erJQlf4ImPA6Q&s",
     summary: "A step-by-step breakdown on how I launched this blog using Vite, React, and GitHub Pages.",
     slug: "build-blog-github"
   },
   {
     title: "My Favorite VS Code Extensions in 2025",
     date: "2025-04-20",
-    image: "https://source.unsplash.com/600x400/?vscode,code",
+    image: "https://code.visualstudio.com/assets/docs/configure/extensions/extension-marketplace/extensions-popular.png",
     summary: "Here's a list of the extensions that supercharge my productivity in VS Code.",
     slug: "vscode-extensions"
   },
   {
     title: "Reflections on Tech & Life",
     date: "2025-04-19",
-    image: "https://source.unsplash.com/600x400/?nature,thinking",
+    image: "https://miro.medium.com/v2/resize:fit:720/format:webp/0*4NpaQnHbwcyAkx6s",
     summary: "Just taking a moment to reflect on how technology intersects with real life. It's deeper than you think.",
     slug: "tech-life"
   }
