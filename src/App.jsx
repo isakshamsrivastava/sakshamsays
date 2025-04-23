@@ -1,62 +1,72 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Sun, Moon } from "lucide-react";
 
 const posts = [
   {
-    title: "Welcome to Saksham Says",
-    date: "2025-04-23",
-    summary: "This is the first post on Saksham's personal blog. Get ready for tech tips, thoughts, and some cool stories!",
-    slug: "welcome-to-saksham-says",
-  },
-  {
     title: "Pahalgam Incident: A Tragic Day in India",
     date: "2025-04-23",
-    summary: "A tragic incident unfolded today in Pahalgam, India. The situation remains tense as authorities investigate the events that led to chaos in the region. Stay tuned for updates on this unfortunate incident.",
-    slug: "pahalgam-incident-april-23",
+    image: "https://source.unsplash.com/600x400/?kashmir,mountains",
+    summary: "A tragic incident unfolded today in Pahalgam, India. The situation remains tense as authorities investigate.",
+    slug: "pahalgam-incident"
   },
+  {
+    title: "How I Built This Blog on GitHub Pages",
+    date: "2025-04-22",
+    image: "https://source.unsplash.com/600x400/?coding,developer",
+    summary: "A step-by-step breakdown on how I launched this blog using Vite, React, and GitHub Pages.",
+    slug: "build-blog-github"
+  },
+  {
+    title: "My Favorite VS Code Extensions in 2025",
+    date: "2025-04-20",
+    image: "https://source.unsplash.com/600x400/?vscode,code",
+    summary: "Here's a list of the extensions that supercharge my productivity in VS Code.",
+    slug: "vscode-extensions"
+  },
+  {
+    title: "Reflections on Tech & Life",
+    date: "2025-04-19",
+    image: "https://source.unsplash.com/600x400/?nature,thinking",
+    summary: "Just taking a moment to reflect on how technology intersects with real life. It's deeper than you think.",
+    slug: "tech-life"
+  }
 ];
 
 export default function Blog() {
   const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
-    document.body.className = darkMode ? "dark" : "light";
-  }, [darkMode]);
 
   return (
-    <div className="p-8 max-w-6xl mx-auto">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-5xl font-extrabold text-gradient">Saksham Says</h1>
-        <button
-          className="bg-transparent p-2 rounded-full"
-          onClick={() => setDarkMode(!darkMode)}
-        >
-          {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-        </button>
+    <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'} transition duration-300`}>      
+      <div className="max-w-7xl mx-auto p-6">
+        <div className="flex justify-between items-center mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">Saksham Says</h1>
+          <button
+            className="px-4 py-2 border rounded-full text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
+            onClick={() => setDarkMode(!darkMode)}>
+            {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+          </button>
+        </div>
+
+        <p className="mb-10 text-lg md:text-xl text-gray-600 dark:text-gray-300">Exploring tech, thoughts, and real stories. Welcome to my corner of the internet ✨</p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post, idx) => (
+            <motion.div
+              key={post.slug}
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+              whileHover={{ scale: 1.03 }}
+              layout>
+              <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{post.date}</p>
+                <p className="text-md text-gray-700 dark:text-gray-300 mb-4">{post.summary}</p>
+                <a href={`/${post.slug}`} className="text-blue-500 dark:text-blue-300 hover:underline">Read More →</a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-
-      <p className="text-xl mb-6 text-gray-600">
-        Sharing thoughts, tech insights, and stories — one post at a time.
-      </p>
-
-      <motion.div layout className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-        {posts.map((post) => (
-          <div
-            key={post.slug}
-            className="p-6 bg-white rounded-lg shadow-lg transition-all hover:shadow-xl dark:bg-gray-800 dark:text-white"
-          >
-            <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-2">{post.title}</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{post.date}</p>
-            <p className="text-lg">{post.summary}</p>
-            <a
-              href={`/${post.slug}`}
-              className="mt-4 inline-block text-blue-500 dark:text-blue-400 hover:underline"
-            >
-              Read More
-            </a>
-          </div>
-        ))}
-      </motion.div>
     </div>
   );
 }
