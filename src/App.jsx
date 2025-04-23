@@ -36,37 +36,74 @@ export default function Blog() {
   const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'} transition duration-300`}>      
-      <div className="max-w-7xl mx-auto p-6">
-        <div className="flex justify-between items-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">Saksham Says</h1>
-          <button
-            className="px-4 py-2 border rounded-full text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-            onClick={() => setDarkMode(!darkMode)}>
-            {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
-          </button>
+    <div className={`${darkMode ? 'dark' : ''}`}>
+      <motion.div
+        className="bg-gray-50 dark:bg-gray-900 text-black dark:text-white transition duration-300 min-h-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        {/* HERO SECTION */}
+        <div className="relative bg-cover bg-center h-72 sm:h-96" style={{ backgroundImage: `url('https://source.unsplash.com/1600x900/?blog,writing')` }}>
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center px-6">
+            <h1 className="text-4xl sm:text-6xl font-bold text-white">Saksham Says</h1>
+            <p className="mt-4 text-lg sm:text-2xl text-gray-200">Exploring tech, thoughts & stories that matter ✨</p>
+            <button
+              className="mt-6 px-5 py-2 bg-white text-black rounded-full font-medium hover:bg-gray-200"
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+            </button>
+          </div>
         </div>
 
-        <p className="mb-10 text-lg md:text-xl text-gray-600 dark:text-gray-300">Exploring tech, thoughts, and real stories. Welcome to my corner of the internet ✨</p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post, idx) => (
-            <motion.div
-              key={post.slug}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
-              whileHover={{ scale: 1.03 }}
-              layout>
-              <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{post.date}</p>
-                <p className="text-md text-gray-700 dark:text-gray-300 mb-4">{post.summary}</p>
-                <a href={`/${post.slug}`} className="text-blue-500 dark:text-blue-300 hover:underline">Read More →</a>
-              </div>
-            </motion.div>
-          ))}
+        {/* BLOG POSTS */}
+        <div className="max-w-7xl mx-auto py-12 px-6">
+          <motion.div
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+          >
+            {posts.map((post) => (
+              <motion.div
+                key={post.slug}
+                className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-2xl overflow-hidden transition duration-300 transform hover:-translate-y-1"
+                whileHover={{ scale: 1.02 }}
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              >
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <h2 className="text-2xl font-semibold mb-1">{post.title}</h2>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{post.date}</p>
+                  <p className="text-gray-700 dark:text-gray-300 mb-4">{post.summary}</p>
+                  <a
+                    href={`/${post.slug}`}
+                    className="inline-block text-blue-500 dark:text-blue-300 hover:underline font-medium"
+                  >
+                    Read More →
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-      </div>
+
+        {/* FOOTER */}
+        <footer className="py-8 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-600 dark:text-gray-400">
+          © 2025 Saksham. Built with 💻 & ☕
+        </footer>
+      </motion.div>
     </div>
   );
 }

@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles here */
+.card-hover {
+  @apply transform transition duration-300 hover:scale-105;
+}
